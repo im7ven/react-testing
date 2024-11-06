@@ -1,0 +1,13 @@
+.dark {
+  color: #fff;
+  background-color: #01060e;
+}
+
+body.dark button {
+  background-color: red;
+}
+
+.light {
+  background-color: #f4f7ff;
+  color: #0b0c11;
+}

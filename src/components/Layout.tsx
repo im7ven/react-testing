@@ -1,13 +1,18 @@
 import { Outlet } from "react-router-dom";
 import GlobalStyle from "../global-styles";
+import Navbar from "./Navbar";
+import { ThemeContextProvider } from "../contexts/ThemeContext";
 
 const Layout = () => {
   return (
     <>
-      <GlobalStyle />
-      <main>
-        <Outlet />
-      </main>
+      <ThemeContextProvider>
+        <GlobalStyle />
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+      </ThemeContextProvider>
     </>
   );
 };
