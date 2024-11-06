@@ -12,6 +12,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+
 }
 `;
 
