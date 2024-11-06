@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
+import GlobalStyle from "../global-styles";
 
 const Layout = () => {
   return (
-    <div>
+    <>
+      <GlobalStyle />
       <main>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 
