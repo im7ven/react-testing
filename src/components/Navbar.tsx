@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <Nav>
       <Link to="/">
-        <IoHome size={25} color={isDarkTheme ? "#fff" : "#000"} />
+        <IoHome size={25} />
       </Link>
       <ToggleWrapper>
         <LightToggle
