@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoHome } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { CiLight, CiDark } from "react-icons/ci";
 
@@ -35,25 +35,27 @@ const ToggleWrapper = styled.div`
 
 const Navbar = () => {
   const { isDarkTheme, setTheme } = useTheme();
+  const { pathname } = useLocation();
 
-  console.log(isDarkTheme);
   return (
     <Nav>
       <Link to="/">
         <IoHome size={25} color={isDarkTheme ? "#fff" : "#21201c"} />
       </Link>
-      <ToggleWrapper>
-        <LightToggle
-          size={30}
-          onClick={() => setTheme(!isDarkTheme)}
-          isDarkTheme={isDarkTheme}
-        />
-        <DarkToggle
-          size={30}
-          onClick={() => setTheme(!isDarkTheme)}
-          isDarkTheme={isDarkTheme}
-        />
-      </ToggleWrapper>
+      {pathname !== "/" && (
+        <ToggleWrapper>
+          <LightToggle
+            size={30}
+            onClick={() => setTheme(!isDarkTheme)}
+            isDarkTheme={isDarkTheme}
+          />
+          <DarkToggle
+            size={30}
+            onClick={() => setTheme(!isDarkTheme)}
+            isDarkTheme={isDarkTheme}
+          />
+        </ToggleWrapper>
+      )}
     </Nav>
   );
 };
