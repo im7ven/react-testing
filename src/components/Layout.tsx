@@ -13,9 +13,7 @@ const Layout = () => {
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <GlobalStyle />
         <Navbar />
-        <main>
-          <Outlet />
-        </main>
+        <Outlet />
       </ThemeProvider>
     </>
   );
