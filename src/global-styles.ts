@@ -20,6 +20,7 @@ body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     max-width: 1200px;
     margin: 0 auto;
+    background: ${(props) => props.theme.color.background}
 
 }
 `;
