@@ -10,6 +10,11 @@ const Nav = styled.nav`
   padding: 3.5rem 2.4rem;
 `;
 
+const HomeIcon = styled(IoHome)`
+  color: ${(props) => props.theme.color.primaryText};
+  font-size: 2.5rem;
+`;
+
 const LightToggle = styled(CiLight).withConfig({
   shouldForwardProp: (prop) => prop !== "isDarkTheme",
 })<{ isDarkTheme: boolean }>`
@@ -19,6 +24,7 @@ const LightToggle = styled(CiLight).withConfig({
     props.isDarkTheme ? "translateX(0rem)" : "translateX(3rem)"};
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  color: ${(props) => props.theme.color.primaryText};
 `;
 
 const DarkToggle = styled(CiDark).withConfig({
@@ -30,6 +36,7 @@ const DarkToggle = styled(CiDark).withConfig({
     props.isDarkTheme ? "translateX(3rem)" : "translateX(0rem)"};
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  color: ${(props) => props.theme.color.primaryText};
 `;
 
 const ToggleWrapper = styled.div`
@@ -40,24 +47,28 @@ const ToggleWrapper = styled.div`
 const Navbar = () => {
   const { isDarkTheme, setTheme } = useTheme();
 
+  const { pathname } = useLocation();
+
   return (
     <Nav>
       <Link to="/">
-        <IoHome size={25} color={isDarkTheme ? "#fff" : "#21201c"} />
+        <HomeIcon />
       </Link>
 
-      <ToggleWrapper>
-        <LightToggle
-          size={30}
-          onClick={() => setTheme(!isDarkTheme)}
-          isDarkTheme={isDarkTheme}
-        />
-        <DarkToggle
-          size={30}
-          onClick={() => setTheme(!isDarkTheme)}
-          isDarkTheme={isDarkTheme}
-        />
-      </ToggleWrapper>
+      {pathname !== "/" && (
+        <ToggleWrapper>
+          <LightToggle
+            size={30}
+            onClick={() => setTheme(!isDarkTheme)}
+            isDarkTheme={isDarkTheme}
+          />
+          <DarkToggle
+            size={30}
+            onClick={() => setTheme(!isDarkTheme)}
+            isDarkTheme={isDarkTheme}
+          />
+        </ToggleWrapper>
+      )}
     </Nav>
   );
 };
