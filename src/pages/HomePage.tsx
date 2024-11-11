@@ -2,11 +2,14 @@ import { RiTodoLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import TechCard from "../components/ProjectCard";
+import { useEffect } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Headline = styled.h1`
   font-size: 4rem;
   max-width: 60rem;
   margin: 3rem auto 0;
+  color: #fff;
 `;
 
 const Highlight = styled.span`
@@ -29,6 +32,12 @@ const ProjectLink = styled(Link)`
 `;
 
 function App() {
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme(true);
+  }, []);
+
   return (
     <>
       <Headline>
@@ -42,18 +51,24 @@ function App() {
             description=" A simple todo app featuring a user-friendly experience"
           />
         </ProjectLink>
-        <TechCard
-          icon={<RiTodoLine />}
-          description=" A simple todo app featuring a user-friendly experience"
-        />
-        <TechCard
-          icon={<RiTodoLine />}
-          description=" A simple todo app featuring a user-friendly experience"
-        />
-        <TechCard
-          icon={<RiTodoLine />}
-          description=" A simple todo app featuring a user-friendly experience"
-        />
+        <ProjectLink to="/apps/todo">
+          <TechCard
+            icon={<RiTodoLine />}
+            description=" A simple todo app featuring a user-friendly experience"
+          />
+        </ProjectLink>
+        <ProjectLink to="/apps/todo">
+          <TechCard
+            icon={<RiTodoLine />}
+            description=" A simple todo app featuring a user-friendly experience"
+          />
+        </ProjectLink>
+        <ProjectLink to="/apps/todo">
+          <TechCard
+            icon={<RiTodoLine />}
+            description=" A simple todo app featuring a user-friendly experience"
+          />
+        </ProjectLink>
       </ProjectGrid>
     </>
   );
