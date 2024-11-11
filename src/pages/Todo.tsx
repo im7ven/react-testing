@@ -61,7 +61,7 @@ const TodoContainer = styled.div`
   max-width: 90rem;
   padding: 2rem;
   margin: 5rem auto;
-  background: ${(props) => props.theme.color.backgroundSecondary};
+  border: ${(props) => props.theme.border};
 `;
 
 const TodoWrapper = styled.div`
@@ -87,6 +87,34 @@ const RemoveButton = styled.button`
   &:hover {
     border-radius: 0px;
   }
+`;
+const CheckBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const CheckBox = styled.span`
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  border: ${(props) => props.theme.border};
+`;
+
+const TodoPlaceHolder = styled.p`
+  font-size: 1.8rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 2rem;
+  color: ${(props) => props.theme.color.primaryText};
+`;
+
+const CheckMark = styled.span`
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
 `;
 
 const TodoPage = () => {
@@ -123,17 +151,22 @@ const TodoPage = () => {
           </InputWrapper>
         </FormGroup>
       </TodoForm>
-      {todos.length > 0 && (
+      {todos.length > 0 ? (
         <TodoContainer>
           {todos.map((todo) => (
             <TodoWrapper key={todo}>
-              <TodoLabel>{todo}</TodoLabel>
+              <CheckBoxWrapper>
+                <CheckBox></CheckBox>
+                <TodoLabel>{todo}</TodoLabel>
+              </CheckBoxWrapper>
               <RemoveButton onClick={() => handleRemoveTodo(todo)}>
                 Remove
               </RemoveButton>
             </TodoWrapper>
           ))}
         </TodoContainer>
+      ) : (
+        <TodoPlaceHolder>You currently have no todos</TodoPlaceHolder>
       )}
     </Main>
   );
