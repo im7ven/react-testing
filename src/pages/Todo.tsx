@@ -118,7 +118,18 @@ const CheckMark = styled.span`
 `;
 
 const TodoPage = () => {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState(() => {
+    const todos: string[] | null = JSON.parse(localStorage["todos"] || null);
+
+    if (todos) {
+      return todos;
+    } else {
+      const initialValue: string[] = [];
+      localStorage.setItem("todos", JSON.stringify(initialValue));
+      return initialValue;
+    }
+  });
+
   const [todoValue, setTodoValue] = useState("");
 
   const handleAddTodo = () => {
