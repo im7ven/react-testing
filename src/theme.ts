@@ -1,24 +1,24 @@
 export const lightTheme = {
   color: {
     background: "#fff",
+    backgroundSecondary: "#FBFBFF",
     primaryText: "#21201c",
   },
-  toggle: {
-    maxHeight: "0", // This could represent the value when dark mode is not active
-    opacity: "0", // When it's not dark mode
-    transform: "translateX(3rem)", // Position for light theme
+  border: "1px solid rgba(0,0,0,.2)",
+  input: {
+    background: "#fff",
   },
 };
 
 export const darkTheme = {
   color: {
     background: "#01060e",
+    backgroundSecondary: "#12151c",
     primaryText: "#fff",
-    secondary: "#a1a1a1",
+    secondaryText: "#a1a1a1",
   },
-  toggle: {
-    maxHeight: "initial", // This could represent the value when dark mode is active
-    opacity: "1", // When it's dark mode
-    transform: "translateX(0rem)", // Position for dark theme
+  border: "1px solid rgba(255,255,255,.2)",
+  input: {
+    background: "#12151c",
   },
 };
