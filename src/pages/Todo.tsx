@@ -189,6 +189,7 @@ const TodoPage = () => {
           <Label>Todo</Label>
           <InputWrapper>
             <TextInput
+              maxLength={50}
               value={todoValue}
               onChange={(e) => setTodoValue(e.target.value)}
               placeholder="e.g. Change the tires"
