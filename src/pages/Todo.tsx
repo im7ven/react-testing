@@ -139,12 +139,16 @@ const TodoPage = () => {
       return;
     }
 
-    setTodos([...todos, todoValue]);
+    const updatedTodos = [...todos, todoValue];
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    setTodos(updatedTodos);
     setTodoValue("");
   };
 
   const handleRemoveTodo = (todoLabel: string) => {
-    setTodos(todos.filter((todo) => todo !== todoLabel));
+    const filteredTodos = todos.filter((todo) => todo !== todoLabel);
+    localStorage.setItem("todos", JSON.stringify(filteredTodos));
+    setTodos(filteredTodos);
   };
 
   return (
