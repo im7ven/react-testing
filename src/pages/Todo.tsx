@@ -54,51 +54,54 @@ const SubmitButton = styled.button`
   background-color: #3596d2;
 `;
 
-const TodoContainer = styled.div`
+const TodosContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   max-width: 90rem;
-  padding: 2rem;
+  gap: 1rem;
   margin: 5rem auto;
-  border: ${(props) => props.theme.border};
+  border-radius: 8px;
+`;
+const TodoContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const TodoLabel = styled.p`
+  color: ${(props) => props.theme.color.primaryText};
+  font-size: 1.7rem;
+  transition: 1s;
 `;
 
 const TodoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+  padding: 2rem;
+  border-radius: 8px;
+  gap: 2rem;
+  cursor: pointer;
+  border: ${(props) => props.theme.border};
+  flex-grow: 1;
 
-const TodoLabel = styled.p`
-  color: ${(props) => props.theme.color.primaryText};
-  font-size: 1.7rem;
+  &:hover ${TodoLabel} {
+    text-decoration: line-through;
+  }
 `;
 
 const RemoveButton = styled.button`
   outline: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   color: #f0405b;
   border: 1px solid #f0405b;
   border-radius: 5px;
   background: 0;
   transition: all 0.15s ease-in;
+  align-self: center;
 
   &:hover {
     border-radius: 0px;
   }
-`;
-const CheckBoxWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const CheckBox = styled.span`
-  border-radius: 100%;
-  width: 2rem;
-  height: 2rem;
-  border: ${(props) => props.theme.border};
 `;
 
 const TodoPlaceHolder = styled.p`
@@ -111,20 +114,26 @@ const TodoPlaceHolder = styled.p`
   color: ${(props) => props.theme.color.primaryText};
 `;
 
-const CheckMark = styled.span`
-  border-radius: 100%;
-  width: 2rem;
-  height: 2rem;
+const CompleteLabel = styled.p`
+  font-size: 1.5rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: ${(props) => props.theme.color.primaryText};
 `;
+
+interface Todo {
+  description: string;
+  isComplete: boolean;
+}
 
 const TodoPage = () => {
   const [todos, setTodos] = useState(() => {
-    const todos: string[] | null = JSON.parse(localStorage["todos"] || null);
+    const todos: Todo[] | null = JSON.parse(localStorage["todos"] || null);
 
     if (todos) {
       return todos;
     } else {
-      const initialValue: string[] = [];
+      const initialValue: Todo[] = [];
       localStorage.setItem("todos", JSON.stringify(initialValue));
       return initialValue;
     }
@@ -133,22 +142,44 @@ const TodoPage = () => {
   const [todoValue, setTodoValue] = useState("");
 
   const handleAddTodo = () => {
-    if (todos.includes(todoValue)) {
+    if (todoValue.trim() === "") {
+      alert("Must provide a valid todo");
+      return;
+    }
+    const filteredTodos = todos.filter(
+      (todo) => todo.description === todoValue
+    );
+
+    if (filteredTodos.length > 0) {
       alert("Cannot have duplicate todos");
       setTodoValue("");
       return;
     }
 
-    const updatedTodos = [...todos, todoValue];
+    const updatedTodos = [
+      ...todos,
+      { description: todoValue, isComplete: false },
+    ];
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setTodos(updatedTodos);
     setTodoValue("");
   };
 
-  const handleRemoveTodo = (todoLabel: string) => {
-    const filteredTodos = todos.filter((todo) => todo !== todoLabel);
+  const handleRemoveTodo = (description: string) => {
+    const filteredTodos = todos.filter(
+      (todo) => todo.description !== description
+    );
     localStorage.setItem("todos", JSON.stringify(filteredTodos));
     setTodos(filteredTodos);
+  };
+
+  const handleCompleteTodo = (description: string) => {
+    const updatedTodo = todos.map((todo) =>
+      todo.description === description ? { ...todo, isComplete: true } : todo
+    );
+
+    localStorage.setItem("todos", JSON.stringify(updatedTodo));
+    setTodos(updatedTodo);
   };
 
   return (
@@ -167,19 +198,19 @@ const TodoPage = () => {
         </FormGroup>
       </TodoForm>
       {todos.length > 0 ? (
-        <TodoContainer>
+        <TodosContainer>
           {todos.map((todo) => (
-            <TodoWrapper key={todo}>
-              <CheckBoxWrapper>
-                <CheckBox></CheckBox>
-                <TodoLabel>{todo}</TodoLabel>
-              </CheckBoxWrapper>
-              <RemoveButton onClick={() => handleRemoveTodo(todo)}>
+            <TodoContainer key={todo.description}>
+              <TodoWrapper onClick={() => handleCompleteTodo(todo.description)}>
+                <TodoLabel>{todo.description}</TodoLabel>
+                {<CompleteLabel>{todo.isComplete && "Complete"}</CompleteLabel>}
+              </TodoWrapper>
+              <RemoveButton onClick={() => handleRemoveTodo(todo.description)}>
                 Remove
               </RemoveButton>
-            </TodoWrapper>
+            </TodoContainer>
           ))}
-        </TodoContainer>
+        </TodosContainer>
       ) : (
         <TodoPlaceHolder>You currently have no todos</TodoPlaceHolder>
       )}
