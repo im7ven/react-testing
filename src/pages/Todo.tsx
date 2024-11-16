@@ -67,10 +67,13 @@ const TodoContainer = styled.div`
   gap: 1rem;
 `;
 
-const TodoLabel = styled.p`
+const TodoLabel = styled.p.withConfig({
+  shouldForwardProp: (prop) => prop !== "isComplete", // Prevent `isComplete` from being forwarded
+})<{ isComplete: boolean }>`
   color: ${(props) => props.theme.color.primaryText};
   font-size: 1.7rem;
   transition: 1s;
+  text-decoration: ${(props) => (props.isComplete ? "line-through" : "none")};
 `;
 
 const TodoWrapper = styled.div`
@@ -203,7 +206,9 @@ const TodoPage = () => {
           {todos.map((todo) => (
             <TodoContainer key={todo.description}>
               <TodoWrapper onClick={() => handleCompleteTodo(todo.description)}>
-                <TodoLabel>{todo.description}</TodoLabel>
+                <TodoLabel isComplete={todo.isComplete}>
+                  {todo.description}
+                </TodoLabel>
                 {<CompleteLabel>{todo.isComplete && "Complete"}</CompleteLabel>}
               </TodoWrapper>
               <RemoveButton onClick={() => handleRemoveTodo(todo.description)}>
