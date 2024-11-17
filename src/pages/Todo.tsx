@@ -124,12 +124,20 @@ const CompleteLabel = styled.p`
   color: ${(props) => props.theme.color.primaryText};
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+`;
+
 interface Todo {
   description: string;
   isComplete: boolean;
 }
 
 const TodoPage = () => {
+  const [error, setError] = useState("");
   const [todos, setTodos] = useState(() => {
     const todos: Todo[] | null = JSON.parse(localStorage["todos"] || null);
 
@@ -146,7 +154,7 @@ const TodoPage = () => {
 
   const handleAddTodo = () => {
     if (todoValue.trim() === "") {
-      alert("Must provide a valid todo");
+      setError("Todo is required");
       return;
     }
     const filteredTodos = todos.filter(
@@ -154,7 +162,8 @@ const TodoPage = () => {
     );
 
     if (filteredTodos.length > 0) {
-      alert("Cannot have duplicate todos");
+      setError("Todo already exist");
+
       setTodoValue("");
       return;
     }
@@ -166,6 +175,7 @@ const TodoPage = () => {
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setTodos(updatedTodos);
     setTodoValue("");
+    setError("");
   };
 
   const handleRemoveTodo = (description: string) => {
@@ -191,12 +201,16 @@ const TodoPage = () => {
         <FormGroup>
           <Label>Todo</Label>
           <InputWrapper>
-            <TextInput
-              maxLength={50}
-              value={todoValue}
-              onChange={(e) => setTodoValue(e.target.value)}
-              placeholder="e.g. Change the tires"
-            />
+            <div>
+              <TextInput
+                maxLength={50}
+                value={todoValue}
+                onChange={(e) => setTodoValue(e.target.value)}
+                placeholder="e.g. Change the tires"
+              />
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </div>
+
             <SubmitButton onClick={handleAddTodo}>Add Todo</SubmitButton>
           </InputWrapper>
         </FormGroup>
