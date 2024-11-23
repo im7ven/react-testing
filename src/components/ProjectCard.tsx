@@ -83,9 +83,7 @@ const ProjectCard = ({ icon, description }: Props) => {
       </LightContainer>
       <ContentWrapper>
         <Icon>{icon}</Icon>
-        <Description>
-          A simple todo app featuring a user-friendly experience
-        </Description>
+        <Description>{description}</Description>
       </ContentWrapper>
     </Card>
   );
