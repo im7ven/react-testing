@@ -51,10 +51,10 @@ function App() {
             description=" A simple todo app featuring a user-friendly experience"
           />
         </ProjectLink>
-        <ProjectLink to="/apps/todo">
+        <ProjectLink to="/apps/expense-tracker">
           <TechCard
             icon={<RiTodoLine />}
-            description=" A simple todo app featuring a user-friendly experience"
+            description="An expense tracker app for financial management"
           />
         </ProjectLink>
         <ProjectLink to="/apps/todo">
