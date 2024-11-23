@@ -1,10 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Main = styled.main`
-  padding: 0 2.4rem;
-`;
-
 const TodoForm = styled.div`
   display: flex;
   justify-content: center;
@@ -196,7 +192,7 @@ const TodoPage = () => {
   };
 
   return (
-    <Main>
+    <>
       <TodoForm>
         <FormGroup>
           <Label>Todo</Label>
@@ -234,7 +230,7 @@ const TodoPage = () => {
       ) : (
         <TodoPlaceHolder>You currently have no todos</TodoPlaceHolder>
       )}
-    </Main>
+    </>
   );
 };
 
