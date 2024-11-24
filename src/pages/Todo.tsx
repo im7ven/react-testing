@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Todo } from "../types";
 
 const TodoForm = styled.div`
   display: flex;
@@ -126,11 +127,6 @@ const ErrorMessage = styled.p`
   margin-top: 0.5rem;
   font-style: italic;
 `;
-
-interface Todo {
-  description: string;
-  isComplete: boolean;
-}
 
 const TodoPage = () => {
   const [error, setError] = useState("");
