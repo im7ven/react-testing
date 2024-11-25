@@ -30,6 +30,16 @@ export const Button = styled.button`
   transition: 0.15s;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #0263ff;
+    border-radius: 40px;
+  }
+
+  &.span {
+    width: 100%;
+  }
+
+  &.secondary {
+    background-color: ${(props) => props.theme.color.backgroundSecondary};
+    border: ${(props) => props.theme.border};
+    color: ${(props) => props.theme.color.primaryText};
   }
 `;
