@@ -27,7 +27,7 @@ export const Button = styled.button`
   background-color: #009ff5;
   padding: 1rem 1.8rem;
   color: #fff;
-  transition: 0.15s ease-in;
+  transition: 0.15s;
 
   &:hover {
     box-shadow: 0 0 10px 0 #0263ff;
