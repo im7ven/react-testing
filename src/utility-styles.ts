@@ -25,7 +25,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: 0;
   background-color: #009ff5;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.8rem;
   color: #fff;
   transition: 0.15s ease-in;
 
