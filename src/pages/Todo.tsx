@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Todo } from "../types";
+import { Button } from "../utility-styles";
 
 const TodoForm = styled.div`
   display: flex;
@@ -43,12 +44,11 @@ const TextInput = styled.input`
 const SubmitButton = styled.button`
   color: #fff;
   outline: 0;
-  font-weight: 100;
   text-transform: uppercase;
   border: 0;
   padding: 1rem 1.8rem;
   border-radius: 5px;
-  background-color: #3596d2;
+  background-color: #009ff5;
 `;
 
 const TodosContainer = styled.div`
@@ -203,7 +203,7 @@ const TodoPage = () => {
               {error && <ErrorMessage>{error}</ErrorMessage>}
             </div>
 
-            <SubmitButton onClick={handleAddTodo}>Add Todo</SubmitButton>
+            <Button onClick={handleAddTodo}>Add Todo</Button>
           </InputWrapper>
         </FormGroup>
       </TodoForm>
