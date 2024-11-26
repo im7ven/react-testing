@@ -42,6 +42,7 @@ const ExpenseForm = styled.form`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  gap: 1rem;
 `;
 
 export interface FormData {
@@ -89,8 +90,12 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
             />
           </div>
           <ButtonWrapper>
-            <Button className="secondary">Cancel</Button>
-            <Button type="submit">Submit</Button>
+            <Button onClick={onClose} className="secondary span">
+              Cancel
+            </Button>
+            <Button className="span" type="submit">
+              Submit
+            </Button>
           </ButtonWrapper>
         </ExpenseForm>
       </Modal>
