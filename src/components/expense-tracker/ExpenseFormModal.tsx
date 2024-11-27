@@ -77,14 +77,14 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
 
             <TextInput
               {...register("category")}
-              type="string"
+              type="text"
               placeholder="Expense Title"
             />
           </div>
           <div>
             <Label>Amount</Label>
             <TextInput
-              {...register("amount")}
+              {...register("amount", { valueAsNumber: true })}
               type="number"
               placeholder="e.g. 215.85"
             />

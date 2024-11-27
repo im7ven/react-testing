@@ -24,7 +24,7 @@ const OptionsBar = styled.div`
 const ExpenseGrid = styled.section`
   display: flex;
   gap: 1rem;
-  padding: 2rem -0;
+  padding: 2rem 0;
 `;
 
 const defaultExpenses: Expense[] = [
@@ -65,6 +65,17 @@ const ExpenseTrackerPage = () => {
     setCategory(e.target.value);
   };
 
+  const handleSubmit = (data: FormData) => {
+    setExpenses([
+      ...filteredExpenses,
+      {
+        ...data,
+        createdAt: new Date().toLocaleDateString(),
+      },
+    ]);
+    handleCloseModal();
+  };
+
   const filteredExpenses = category
     ? expenses.filter((expense) => expense.category === category)
     : expenses;
@@ -72,18 +83,7 @@ const ExpenseTrackerPage = () => {
   return (
     <div>
       {isModalOpen && (
-        <ExpenseFormModal
-          onSubmit={(data: FormData) =>
-            setExpenses([
-              ...expenses,
-              {
-                ...data,
-                createdAt: new Date().toLocaleDateString(),
-              },
-            ])
-          }
-          onClose={handleCloseModal}
-        />
+        <ExpenseFormModal onSubmit={handleSubmit} onClose={handleCloseModal} />
       )}
       <OptionsBar>
         <ExpenseTotal>
