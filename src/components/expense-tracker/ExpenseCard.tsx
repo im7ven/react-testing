@@ -7,6 +7,12 @@ const Card = styled.article`
   max-width: 30rem;
   padding: 1rem;
   border-radius: 8px;
+  transition: all 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const ExpenseTitle = styled.h2`
@@ -25,12 +31,10 @@ const ExpenseDate = styled.p`
   color: ${(props) => props.theme.color.primaryText};
 `;
 
-interface Props {
-  expenseTitle: string;
-  expenseCategory: string;
-  expenseAmount: number;
-  expenseDate: string;
-}
+const ExpenseTotal = styled.p`
+  font-size: 1.8rem;
+  color: ${(props) => props.theme.color.secondaryText};
+`;
 
 const ExpenseCard = ({ ...props }: Expense) => {
   return (
@@ -39,6 +43,7 @@ const ExpenseCard = ({ ...props }: Expense) => {
         <ExpenseTitle>{props.title}</ExpenseTitle>
         <ExpenseDate>{props.createdAt}</ExpenseDate>
       </CardHeader>
+      <ExpenseTotal>${props.amount.toFixed(2)}</ExpenseTotal>
     </Card>
   );
 };
