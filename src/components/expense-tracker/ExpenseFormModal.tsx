@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Button, Label, TextInput } from "../../utility-styles";
+import { Button, Label, Select, TextInput } from "../../utility-styles";
 import { useForm } from "react-hook-form";
+import { categories } from "../../data/category-data";
 
 const ModalOverlay = styled.div`
   position: absolute;
@@ -75,11 +76,14 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
           <div>
             <Label>Category</Label>
 
-            <TextInput
-              {...register("category")}
-              type="text"
-              placeholder="Expense Title"
-            />
+            <Select defaultValue="placeholder" {...register("category")}>
+              <option value="placeholder" disabled>
+                Select Category
+              </option>
+              {categories.map((category) => (
+                <option value={category}>{category}</option>
+              ))}
+            </Select>
           </div>
           <div>
             <Label>Amount</Label>
