@@ -28,6 +28,7 @@ const ExpenseSelector = ({ onChange }: Props) => {
       <Option value="placeholder" disabled>
         Select Category
       </Option>
+      <Option value="">None</Option>
       <Option value="Food">Food</Option>
       <Option value="Vehicle">Vehicle</Option>
       <Option value="Fun">Fun</Option>
