@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const TextInput = styled.input`
+const input = css`
   border: ${(props) => props.theme.border};
   padding: 1.4rem;
   border-radius: 5px;
@@ -10,6 +10,14 @@ export const TextInput = styled.input`
   color: ${(props) => props.theme.color.primaryText};
   width: 100%;
   box-sizing: border-box;
+`;
+
+export const TextInput = styled.input`
+  ${input}
+`;
+
+export const Select = styled.select`
+  ${input}
 `;
 
 export const Label = styled.label`
