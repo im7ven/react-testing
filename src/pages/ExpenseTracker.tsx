@@ -92,7 +92,10 @@ const ExpenseTrackerPage = () => {
             .toFixed(2)}`}
         </ExpenseTotal>
         <div>
-          <ExpenseSelector onChange={handleChangeCategory} />
+          <ExpenseSelector
+            expenses={expenses}
+            onChange={handleChangeCategory}
+          />
           <Button onClick={handleOpenModal}>Add Expense</Button>
         </div>
       </OptionsBar>
