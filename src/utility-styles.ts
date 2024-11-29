@@ -38,7 +38,7 @@ export const Button = styled.button`
   transition: 0.15s;
 
   &:hover {
-    border-radius: 40px;
+    background-color: #118ccf;
   }
 
   &.span {
