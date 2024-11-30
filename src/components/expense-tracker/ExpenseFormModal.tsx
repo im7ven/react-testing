@@ -81,7 +81,9 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
                 Select Category
               </option>
               {categories.map((category) => (
-                <option value={category}>{category}</option>
+                <option key={category} value={category}>
+                  {category}
+                </option>
               ))}
             </Select>
           </div>
