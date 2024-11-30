@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Expense } from "../../types";
 
 const Selector = styled.select`
   border: ${(props) => props.theme.border};
@@ -20,18 +21,29 @@ const Option = styled.option`
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  expenses: Expense[];
 }
 
-const ExpenseSelector = ({ onChange }: Props) => {
+const ExpenseSelector = ({ onChange, expenses }: Props) => {
+  const uniqueCategories = expenses.reduce((acc, expense) => {
+    if (!acc.includes(expense.category)) {
+      acc.push(expense.category);
+    }
+    return acc;
+  }, [] as string[]);
+
   return (
     <Selector onChange={(e) => onChange(e)} defaultValue="placeholder">
       <Option value="placeholder" disabled>
         Select Category
       </Option>
       <Option value="">All</Option>
-      <Option value="Food">Food</Option>
-      <Option value="Vehicle">Vehicle</Option>
-      <Option value="Fun">Fun</Option>
+
+      {uniqueCategories.map((category) => (
+        <Option key={category} value={category}>
+          {category}
+        </Option>
+      ))}
     </Selector>
   );
 };
