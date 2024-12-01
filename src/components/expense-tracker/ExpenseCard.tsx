@@ -9,6 +9,7 @@ const Card = styled.article`
   border-radius: 8px;
   transition: all 0.1s;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     transform: scale(1.05);
@@ -36,7 +37,27 @@ const ExpenseTotal = styled.p`
   color: ${(props) => props.theme.color.secondaryText};
 `;
 
-const ExpenseCard = ({ ...props }: Expense) => {
+const RemoveButton = styled.button`
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  background-color: red;
+  color: white;
+  right: -1rem;
+  top: -1rem;
+  outline: 0;
+  border: 0;
+  border-radius: 100%;
+`;
+
+interface Props {
+  title: string;
+  createdAt: string;
+  amount: number;
+  onDelete: () => void;
+}
+
+const ExpenseCard = ({ ...props }: Props) => {
   return (
     <Card>
       <CardHeader>
@@ -44,6 +65,7 @@ const ExpenseCard = ({ ...props }: Expense) => {
         <ExpenseDate>{props.createdAt}</ExpenseDate>
       </CardHeader>
       <ExpenseTotal>${props.amount.toFixed(2)}</ExpenseTotal>
+      <RemoveButton onClick={props.onDelete}>X</RemoveButton>
     </Card>
   );
 };

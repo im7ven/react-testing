@@ -29,18 +29,21 @@ const ExpenseGrid = styled.section`
 
 const defaultExpenses: Expense[] = [
   {
+    id: Date.now() + 1,
     title: "Tires",
     amount: 189.0,
     category: "Vehicle",
     createdAt: new Date().toLocaleDateString(),
   },
   {
+    id: Date.now() + 2,
     title: "Oil Change",
     amount: 89.0,
     category: "Vehicle",
     createdAt: new Date().toLocaleDateString(),
   },
   {
+    id: Date.now() + 3,
     title: "Groceries",
     amount: 229.0,
     category: "Food",
@@ -71,14 +74,21 @@ const ExpenseTrackerPage = () => {
       {
         ...data,
         createdAt: new Date().toLocaleDateString(),
+        id: Date.now(),
       },
     ]);
     handleCloseModal();
   };
 
+  const handleRemoveExpense = (id: number) => {
+    setExpenses(expenses.filter((expense) => expense.id !== id));
+  };
+
   const filteredExpenses = category
     ? expenses.filter((expense) => expense.category === category)
     : expenses;
+
+  console.log(expenses);
 
   return (
     <div>
@@ -101,7 +111,11 @@ const ExpenseTrackerPage = () => {
       </OptionsBar>
       <ExpenseGrid>
         {filteredExpenses.map((expense) => (
-          <ExpenseCard key={expense.title} {...expense} />
+          <ExpenseCard
+            onDelete={() => handleRemoveExpense(expense.id)}
+            key={expense.title}
+            {...expense}
+          />
         ))}
       </ExpenseGrid>
     </div>
