@@ -12,7 +12,7 @@ const Card = styled.article`
   position: relative;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 
@@ -41,13 +41,18 @@ const RemoveButton = styled.button`
   position: absolute;
   width: 2rem;
   height: 2rem;
-  background-color: red;
+  background-color: ${(props) => props.theme.color.backgroundSecondary};
   color: white;
   right: -1rem;
   top: -1rem;
   outline: 0;
-  border: 0;
+  border: ${(props) => props.theme.border};
   border-radius: 100%;
+  cursor: pointer;
+
+  &:hover {
+    color: ${(props) => props.theme.color.secondaryText};
+  }
 `;
 
 interface Props {
