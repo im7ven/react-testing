@@ -51,3 +51,13 @@ export const Button = styled.button`
     color: ${(props) => props.theme.color.primaryText};
   }
 `;
+
+export const PlaceholderMessage = styled.p`
+  font-size: 1.8rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 2rem;
+  color: ${(props) => props.theme.color.primaryText};
+`;

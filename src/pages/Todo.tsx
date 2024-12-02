@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Todo } from "../types";
-import { Button } from "../utility-styles";
+import { Button, PlaceholderMessage } from "../utility-styles";
 
 const TodoForm = styled.div`
   display: flex;
@@ -102,16 +102,6 @@ const RemoveButton = styled.button`
   &:hover {
     border-radius: 0px;
   }
-`;
-
-const TodoPlaceHolder = styled.p`
-  font-size: 1.8rem;
-  letter-spacing: 0.3rem;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 300;
-  margin-top: 2rem;
-  color: ${(props) => props.theme.color.primaryText};
 `;
 
 const CompleteLabel = styled.p`
@@ -224,7 +214,7 @@ const TodoPage = () => {
           ))}
         </TodosContainer>
       ) : (
-        <TodoPlaceHolder>You currently have no todos</TodoPlaceHolder>
+        <PlaceholderMessage>You currently have no todos</PlaceholderMessage>
       )}
     </>
   );

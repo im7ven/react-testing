@@ -4,7 +4,7 @@ import ExpenseFormModal, {
   FormData,
 } from "../components/expense-tracker/ExpenseFormModal";
 import { Expense } from "../types";
-import { Button } from "../utility-styles";
+import { Button, PlaceholderMessage } from "../utility-styles";
 import ExpenseCard from "../components/expense-tracker/ExpenseCard";
 import ExpenseSelector from "../components/expense-tracker/ExpenseSelector";
 
@@ -109,15 +109,19 @@ const ExpenseTrackerPage = () => {
           <Button onClick={handleOpenModal}>Add Expense</Button>
         </div>
       </OptionsBar>
-      <ExpenseGrid>
-        {filteredExpenses.map((expense) => (
-          <ExpenseCard
-            onDelete={() => handleRemoveExpense(expense.id)}
-            key={expense.title}
-            {...expense}
-          />
-        ))}
-      </ExpenseGrid>
+      {expenses.length ? (
+        <ExpenseGrid>
+          {filteredExpenses.map((expense) => (
+            <ExpenseCard
+              onDelete={() => handleRemoveExpense(expense.id)}
+              key={expense.title}
+              {...expense}
+            />
+          ))}
+        </ExpenseGrid>
+      ) : (
+        <PlaceholderMessage>You currently have no expenses</PlaceholderMessage>
+      )}
     </div>
   );
 };
