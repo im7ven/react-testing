@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Expense } from "../../types";
 
 const Card = styled.article`
   border: ${(props) => props.theme.border};
