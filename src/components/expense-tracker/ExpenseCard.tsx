@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Card = styled.article`
   border: ${(props) => props.theme.border};
-  width: 100%;
   max-width: 30rem;
   padding: 1rem;
   border-radius: 8px;

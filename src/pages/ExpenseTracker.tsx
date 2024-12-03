@@ -22,9 +22,22 @@ const OptionsBar = styled.div`
 `;
 
 const ExpenseGrid = styled.section`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
   gap: 1rem;
   padding: 2rem 0;
+  align-items: start;
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const defaultExpenses: Expense[] = [
