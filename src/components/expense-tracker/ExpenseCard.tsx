@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const Card = styled.article`
   border: ${(props) => props.theme.border};
@@ -35,16 +36,15 @@ const ExpenseTotal = styled.p`
   color: ${(props) => props.theme.color.secondaryText};
 `;
 
-const RemoveButton = styled.button`
+const RemoveButton = styled(AiFillCloseCircle)`
   position: absolute;
   width: 2rem;
   height: 2rem;
   background-color: ${(props) => props.theme.color.backgroundSecondary};
-  color: white;
+  color: ${(props) => props.theme.color.primaryText};
   right: -1rem;
   top: -1rem;
   outline: 0;
-  border: ${(props) => props.theme.border};
   border-radius: 100%;
   cursor: pointer;
 
@@ -68,7 +68,7 @@ const ExpenseCard = ({ ...props }: Props) => {
         <ExpenseDate>{props.createdAt}</ExpenseDate>
       </CardHeader>
       <ExpenseTotal>${props.amount.toFixed(2)}</ExpenseTotal>
-      <RemoveButton onClick={props.onDelete}>X</RemoveButton>
+      <RemoveButton onClick={props.onDelete} />
     </Card>
   );
 };
