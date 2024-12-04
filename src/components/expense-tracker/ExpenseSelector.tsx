@@ -25,12 +25,8 @@ interface Props {
 }
 
 const ExpenseSelector = ({ onChange, expenses }: Props) => {
-  const uniqueCategories = expenses.reduce((acc, expense) => {
-    if (!acc.includes(expense.category)) {
-      acc.push(expense.category);
-    }
-    return acc;
-  }, [] as string[]);
+  const expenseCategories = expenses.map((expense) => expense.category);
+  const uniqueCategories = Array.from(new Set(expenseCategories));
 
   return (
     <Selector onChange={(e) => onChange(e)} defaultValue="placeholder">
