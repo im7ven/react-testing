@@ -7,7 +7,6 @@ const Selector = styled.select`
   padding: 1rem 1.8rem;
   background: none;
   color: ${(props) => props.theme.color.primaryText};
-  margin-right: 1rem;
 `;
 
 const Option = styled.option`

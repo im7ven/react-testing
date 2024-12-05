@@ -40,6 +40,17 @@ const ExpenseGrid = styled.section`
   }
 `;
 
+const OptionButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media screen and (min-width: 480px) {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+`;
+
 const defaultExpenses: Expense[] = [
   {
     id: Date.now() + 1,
@@ -114,13 +125,13 @@ const ExpenseTrackerPage = () => {
             ?.reduce((acc, val) => acc + val.amount, 0)
             .toFixed(2)}`}
         </ExpenseTotal>
-        <div>
+        <OptionButtonWrapper>
           <ExpenseSelector
             expenses={expenses}
             onChange={handleChangeCategory}
           />
           <Button onClick={handleOpenModal}>Add Expense</Button>
-        </div>
+        </OptionButtonWrapper>
       </OptionsBar>
       {expenses.length ? (
         <ExpenseGrid>
