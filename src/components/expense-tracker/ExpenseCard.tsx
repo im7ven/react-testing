@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 const Card = styled.article`
   border: ${(props) => props.theme.border};
   max-width: 30rem;
+  width: 100%;
   padding: 1rem;
   border-radius: 8px;
   transition: all 0.1s;
@@ -12,6 +13,10 @@ const Card = styled.article`
 
   &:hover {
     transform: scale(1.02);
+  }
+
+  @media screen and (min-width: 480px) {
+    width: initial;
   }
 `;
 

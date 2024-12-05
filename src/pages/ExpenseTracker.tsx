@@ -23,13 +23,14 @@ const OptionsBar = styled.div`
 
 const ExpenseGrid = styled.section`
   display: grid;
-  grid-template-columns: auto;
   gap: 1rem;
   padding: 2rem 0;
   align-items: start;
+  justify-items: center;
 
   @media screen and (min-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
+    justify-items: initial;
   }
 
   @media screen and (min-width: 768px) {
