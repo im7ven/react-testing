@@ -46,6 +46,11 @@ const ButtonWrapper = styled.div`
   gap: 1rem;
 `;
 
+const FormError = styled.p`
+  color: #ff5959;
+  font-size: 1.3rem;
+`;
+
 export interface FormData {
   title: string;
   amount: number;
@@ -58,7 +63,11 @@ interface Props {
 }
 
 const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   return (
     <ModalOverlay onClick={onClose}>
@@ -68,16 +77,20 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
           <div>
             <Label>Expense</Label>
             <TextInput
-              {...register("title")}
+              {...register("title", { required: "Must provide expense name" })}
               type="text"
               placeholder="e.g. Winter Tires"
             />
+            {errors.title && <FormError>{errors.title.message}</FormError>}
           </div>
           <div>
             <Label>Category</Label>
 
-            <Select defaultValue="placeholder" {...register("category")}>
-              <option value="placeholder" disabled>
+            <Select
+              defaultValue=""
+              {...register("category", { required: "Must provide a category" })}
+            >
+              <option value="" disabled>
                 Select Category
               </option>
               {categories.map((category) => (
@@ -86,14 +99,21 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
                 </option>
               ))}
             </Select>
+            {errors.category && (
+              <FormError>{errors.category.message}</FormError>
+            )}
           </div>
           <div>
             <Label>Amount</Label>
             <TextInput
-              {...register("amount", { valueAsNumber: true })}
+              {...register("amount", {
+                valueAsNumber: true,
+                required: "Must provide a amount",
+              })}
               type="number"
               placeholder="e.g. 215.85"
             />
+            {errors.amount && <FormError>{errors.amount.message}</FormError>}
           </div>
           <ButtonWrapper>
             <Button onClick={onClose} className="secondary span">

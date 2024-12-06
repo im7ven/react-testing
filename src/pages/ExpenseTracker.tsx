@@ -113,8 +113,6 @@ const ExpenseTrackerPage = () => {
     ? expenses.filter((expense) => expense.category === category)
     : expenses;
 
-  console.log(expenses);
-
   return (
     <div>
       {isModalOpen && (
