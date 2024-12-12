@@ -109,6 +109,10 @@ const ExpenseFormModal = ({ onClose, onSubmit }: Props) => {
               {...register("amount", {
                 valueAsNumber: true,
                 required: "Must provide a amount",
+                max: {
+                  value: 10000,
+                  message: "Maximum value of 10000",
+                },
               })}
               type="number"
               placeholder="e.g. 215.85"
