@@ -56,7 +56,7 @@ const Navbar = () => {
       </Link>
 
       {pathname !== "/" && (
-        <ToggleWrapper>
+        <ToggleWrapper data-testid="theme-toggle">
           <LightToggle
             size={30}
             onClick={() => setTheme(!isDarkTheme)}
