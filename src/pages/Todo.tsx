@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Todo } from "../types";
 import { Button, PlaceholderMessage } from "../utility-styles";
+import { TbTrash } from "react-icons/tb";
 
 const TodoForm = styled.div`
   display: flex;
@@ -96,11 +97,14 @@ const RemoveButton = styled.button`
   border: 1px solid #f0405b;
   border-radius: 5px;
   background: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: all 0.15s ease-in;
   align-self: center;
 
   &:hover {
-    border-radius: 0px;
+    transform: translateY(-0.5rem);
   }
 `;
 
@@ -208,6 +212,7 @@ const TodoPage = () => {
                 {<CompleteLabel>{todo.isComplete && "Complete"}</CompleteLabel>}
               </TodoWrapper>
               <RemoveButton onClick={() => handleRemoveTodo(todo.description)}>
+                <TbTrash size="15px" />
                 Remove
               </RemoveButton>
             </TodoContainer>
