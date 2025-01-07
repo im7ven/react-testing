@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ExpenseFormModal, {
   FormData,
@@ -77,9 +77,22 @@ const defaultExpenses: Expense[] = [
 ];
 
 const ExpenseTrackerPage = () => {
+  const initializeExpenses = () => {
+    const storedExpenses = localStorage.getItem("expenses");
+    if (storedExpenses) {
+      return JSON.parse(storedExpenses);
+    }
+    localStorage.setItem("expenses", JSON.stringify(defaultExpenses));
+    return defaultExpenses;
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [expenses, setExpenses] = useState<Expense[]>(defaultExpenses);
+  const [expenses, setExpenses] = useState<Expense[]>(initializeExpenses);
   const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses]);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
