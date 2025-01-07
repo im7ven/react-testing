@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Todo } from "../types";
 import { Button, PlaceholderMessage } from "../utility-styles";
@@ -136,6 +136,10 @@ const TodoPage = () => {
     }
   });
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const [todoValue, setTodoValue] = useState("");
 
   const handleAddTodo = () => {
@@ -168,7 +172,6 @@ const TodoPage = () => {
     const filteredTodos = todos.filter(
       (todo) => todo.description !== description
     );
-    localStorage.setItem("todos", JSON.stringify(filteredTodos));
     setTodos(filteredTodos);
   };
 
@@ -177,7 +180,6 @@ const TodoPage = () => {
       todo.description === description ? { ...todo, isComplete: true } : todo
     );
 
-    localStorage.setItem("todos", JSON.stringify(updatedTodo));
     setTodos(updatedTodo);
   };
 
